@@ -1,0 +1,20 @@
+{
+  "name": "insta-poc",
+  "version": "0.1.0",
+  "description": "This is the POC to get item infos from Instagram without using api from Instagram",
+  "author": "Hung Pham <hung.pham@terralogic.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "nodemon server/app.js --watch server --exec babel-node --presets=@babel/preset-env"
+  },
+  "dependencies": {
+    "@babel/core": "^7.1.5",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.5",
+    "express": "^4.16.4",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  }
+}
