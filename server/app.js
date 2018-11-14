@@ -1,6 +1,7 @@
 import express from "express";
 import to from "await-to-js";
 import getAuthRequestUrl from "./services/instaAuth/getAuthRequestUrl";
+import exchangeAccessToken from "./services/instaAuth/exchangeAccessToken";
 import { MAIN_SERVER_PORT } from "../config";
 
 const app = express();
@@ -10,7 +11,19 @@ app.get("/getAuthRequestUrl", async (req, res) => {
   const [err, response] = await to(getAuthRequestUrl());
 
   if (err) {
-    res.json({ message: "Cannot get auth request url" });
+    console.log(err);
+    res.json({ message: err.message });
+  } else {
+    res.json(response);
+  }
+});
+
+app.get("/exchangeAccessToken", async (req, res) => {
+  const [err, response] = await to(exchangeAccessToken());
+
+  if (err) {
+    console.log(err);
+    res.json({ message: err.message });
   } else {
     res.json(response);
   }

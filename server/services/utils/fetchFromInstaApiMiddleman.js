@@ -1,4 +1,5 @@
 import axios from "axios";
+import to from "await-to-js";
 import queryString from "query-string";
 import { INSTA_API_MIDDLEMAN_SERVER_PORT } from "../../../config";
 
@@ -9,10 +10,16 @@ module.exports = async (relativeUrl, queries) => {
     queries
   )}`;
 
-  const response = await axios.get(requestUrl);
+  const [err, response] = await to(axios.get(requestUrl));
 
-  if (!response.data || response.data.stat !== "OK") {
-    throw new Error("Something bad happenned");
+  if (err || !response.data || response.data.stat !== "OK") {
+    const message = err
+      ? err.message
+      : response.data && response.data.message
+      ? response.data.message
+      : "Something bad happened.";
+
+    throw new Error(message);
   }
 
   return response.data;
