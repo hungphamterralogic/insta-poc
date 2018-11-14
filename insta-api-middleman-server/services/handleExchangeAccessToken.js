@@ -1,11 +1,11 @@
-import queryString from "query-string";
 import axios from "axios";
+import queryString from "query-string";
 import {
   FACEBOOK_CLIENT_ID,
   FACEBOOK_CLIENT_SECRET,
   MIDDLEMAN_URL,
   EXCHANGE_ACCESS_TOKEN_URL
-} from "./config";
+} from "../config";
 
 module.exports = async (req, res) => {
   const { code } = req.query;

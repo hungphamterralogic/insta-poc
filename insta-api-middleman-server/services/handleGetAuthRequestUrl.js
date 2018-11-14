@@ -3,7 +3,7 @@ import {
   FACEBOOK_CLIENT_ID,
   MIDDLEMAN_URL,
   USER_AUTHORIZATION_URL
-} from "./config";
+} from "../config";
 
 module.exports = (req, res) => {
   const { scope } = req.query;

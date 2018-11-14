@@ -1,10 +1,11 @@
 import express from "express";
-import handleGetAuthRequestUrl from "./handleGetAuthRequestUrl";
-import handleExchangeAccessToken from "./handleExchangeAccessToken";
-import { INSTA_API_MIDDLEMAN_SERVER_PORT } from "../config";
+import handleGetAuthRequestUrl from "./services/handleGetAuthRequestUrl";
+import handleExchangeAccessToken from "./services/handleExchangeAccessToken";
+import getTestInfoWithAccessToken from "./services/getTestInfoWithAccessToken";
+import { MIDDLEMAN_PORT } from "./config";
 
 const app = express();
-const port = INSTA_API_MIDDLEMAN_SERVER_PORT;
+const port = MIDDLEMAN_PORT;
 
 app.get("/getAuthRequestUrl", (req, res) => {
   handleGetAuthRequestUrl(req, res);
@@ -17,6 +18,10 @@ app.get("/auth/facebook-callback", (req, res) => {
 
 app.get("/exchangeAccessToken", (req, res) => {
   handleExchangeAccessToken(req, res);
+});
+
+app.get("/getTestInfoWithAccessToken", (req, res) => {
+  getTestInfoWithAccessToken(req, res);
 });
 
 app.use((_, res) => {
