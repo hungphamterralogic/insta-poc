@@ -5,16 +5,21 @@
   "author": "Hung Pham <hung.pham@terralogic.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "nodemon server/app.js --watch server --exec babel-node --presets=@babel/preset-env"
+    "start:middleman-server": "nodemon insta-api-middleman-server/app.js --watch insta-api-middleman-server --exec babel-node --presets=@babel/preset-env",
+    "start:main-server": "nodemon server/app.js --watch server --exec babel-node --presets=@babel/preset-env",
+    "start": "concurrently \"npm run start:middleman-server\" \"npm run start:main-server\""
   },
   "dependencies": {
     "@babel/core": "^7.1.5",
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.5",
+    "await-to-js": "^2.0.1",
+    "axios": "^0.18.0",
     "express": "^4.16.4",
-    "request": "^2.88.0"
+    "query-string": "^6.2.0"
   },
   "devDependencies": {
+    "concurrently": "^4.0.1",
     "nodemon": "^1.18.6"
   }
 }

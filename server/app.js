@@ -1,39 +1,18 @@
 import express from "express";
-import getHashtaggedItemShortcodes from "./getHashtaggedItemShortcodes";
-import getItemInfos from "./getItemInfos/getItemInfos";
+import to from "await-to-js";
+import getAuthRequestUrl from "./services/instaAuth/getAuthRequestUrl";
+import { MAIN_SERVER_PORT } from "../config";
 
 const app = express();
-const port = 3000;
+const port = MAIN_SERVER_PORT;
 
-app.get("/api/getHashtaggedItemShortcodes", async (req, res) => {
-  const { hashtag, quantity } = req.query;
+app.get("/getAuthRequestUrl", async (req, res) => {
+  const [err, response] = await to(getAuthRequestUrl());
 
-  const hasValidQueryParams = hashtag && Number(quantity) > 0;
-
-  if (hasValidQueryParams) {
-    const hashtaggedItemShortcodes = await getHashtaggedItemShortcodes({
-      hashtag,
-      quantity
-    });
-    res.json(hashtaggedItemShortcodes);
+  if (err) {
+    res.json({ message: "Cannot get auth request url" });
   } else {
-    res.json({
-      message:
-        "hashtag or quantity params in url's query is undefined or invalid"
-    });
-  }
-});
-
-app.get("/api/getItemInfos", async (req, res) => {
-  const { shortcode } = req.query;
-
-  const hasValidShortcodeSyntax = shortcode && typeof shortcode === "string";
-
-  if (hasValidShortcodeSyntax) {
-    const itemInfos = await getItemInfos(shortcode);
-    res.json(itemInfos);
-  } else {
-    res.json({ message: "Invalid shortcode" });
+    res.json(response);
   }
 });
 
