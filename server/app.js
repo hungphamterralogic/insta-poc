@@ -1,32 +1,50 @@
+import path from "path";
 import express from "express";
-import to from "await-to-js";
-import getAuthRequestUrl from "./services/instaAuth/getAuthRequestUrl";
-import exchangeAccessToken from "./services/instaAuth/exchangeAccessToken";
+import session from "express-session";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import handleLogin from "./handleLogin";
 import { MAIN_SERVER_PORT } from "../config";
+import getAccessTokenAndLogin from "./getAccessTokenAndLogin";
 
 const app = express();
 const port = MAIN_SERVER_PORT;
 
-app.get("/getAuthRequestUrl", async (req, res) => {
-  const [err, response] = await to(getAuthRequestUrl());
+app.set("view engine", "ejs");
+app.set("views", path.resolve(__dirname, "views"));
 
-  if (err) {
-    console.log(err);
-    res.json({ message: err.message });
-  } else {
-    res.json(response);
-  }
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true
+  })
+);
+
+app.get("/login", (req, res) => {
+  if (req.session.user) res.redirect("/");
+  else handleLogin(req, res);
 });
 
-app.get("/exchangeAccessToken", async (req, res) => {
-  const [err, response] = await to(exchangeAccessToken());
+app.get("/logout", (req, res) => {
+  req.session.user = null;
+  res.redirect("/login");
+});
 
-  if (err) {
-    console.log(err);
-    res.json({ message: err.message });
-  } else {
-    res.json(response);
-  }
+app.get("/getAccessTokenAndLogin", (req, res) => {
+  getAccessTokenAndLogin(req, res);
+});
+
+app.use((req, res, next) => {
+  if (!req.session.user) res.redirect("/login");
+  else next();
+});
+
+app.get("/", (req, res) => {
+  res.send("Home page");
 });
 
 app.use((_, res) => {

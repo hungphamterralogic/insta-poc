@@ -1,4 +1,4 @@
-import { INSTA_API_MIDDLEMAN_SERVER_PORT } from "../config";
+import { INSTA_API_MIDDLEMAN_SERVER_PORT, MAIN_SERVER_PORT } from "../config";
 
 export const FACEBOOK_CLIENT_ID = "284639592188546";
 export const FACEBOOK_CLIENT_SECRET = "5e92d15b9a3d1af059ad2b50dc600a86";
@@ -8,6 +8,8 @@ export const TEST_ACCESS_TOKEN =
 
 export const MIDDLEMAN_PORT = INSTA_API_MIDDLEMAN_SERVER_PORT;
 export const MIDDLEMAN_URL = `http://localhost:${MIDDLEMAN_PORT}`;
+
+export const MAIN_SERVER_URL = `http://localhost:${MAIN_SERVER_PORT}`;
 
 export const REST_URL = "https://graph.facebook.com";
 export const API_VERSION = "v3.1";

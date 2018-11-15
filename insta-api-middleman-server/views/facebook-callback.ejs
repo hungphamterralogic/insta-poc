@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> </head>
+  <body>
+    <p id="code"></p>
+    <script>
+      let params = new URL(document.location).searchParams;
+      let code = params.get("code");
+
+      window.opener.location.replace(
+        "<%= mainServerUrl %>/getAccessTokenAndLogin?code=" + code
+      );
+
+      document.getElementById("code").innerHTML = "Help me to close this tab";
+    </script>
+  </body>
+</html>
