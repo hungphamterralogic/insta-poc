@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Home</title>
+  </head>
+  <body>
+    <a href="/logout">Logout</a> <br />
+    <br />
+    <br />
+    <input id="relativeApiUrl" type="text" name="relativeApiUrl" value="/me" />
+    <br />
+    <button onclick="getResult()">Get Result</button>
+    <p id="result"></p>
+    <script>
+      function getResult() {
+        var relativeApiUrl = document.getElementById("relativeApiUrl").value;
+        var url =
+          "/middlemanApiCall?relativeApiUrl=" + encodeURI(relativeApiUrl);
+
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            document.getElementById("result").innerHTML = xhr.response;
+          } else {
+            document.getElementById("result").innerHTML = "Cannot get result";
+          }
+        };
+        xhr.open("GET", url);
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>

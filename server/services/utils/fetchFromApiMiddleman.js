@@ -6,9 +6,9 @@ import { MIDDLEMAN_SERVER_PORT } from "../../../config";
 module.exports = async (relativeUrl, queries) => {
   const middlemanUrl = `http://localhost:${MIDDLEMAN_SERVER_PORT}`;
 
-  const requestUrl = `${middlemanUrl}${relativeUrl}?${queryString.stringify(
-    queries
-  )}`;
+  const requestUrl = queries
+    ? `${middlemanUrl}${relativeUrl}?${queryString.stringify(queries)}`
+    : `${middlemanUrl}${relativeUrl}`;
 
   const [err, response] = await to(axios.get(requestUrl));
 

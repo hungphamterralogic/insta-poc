@@ -2,6 +2,7 @@ import path from "path";
 import express from "express";
 import handleGetAuthRequestUrl from "./handlers/handleGetAuthRequestUrl";
 import handleExchangeAccessToken from "./handlers/handleExchangeAccessToken";
+import handleFbApi from "./handlers/handleFbApi";
 import { MIDDLEMAN_SERVER_PORT, MAIN_SERVER_URL } from "./config";
 
 const app = express();
@@ -22,6 +23,10 @@ app.get("/auth/facebook-callback", (req, res) => {
 
 app.get("/auth/exchangeAccessToken", (req, res) => {
   handleExchangeAccessToken(req, res);
+});
+
+app.get("/fbApi", (req, res) => {
+  handleFbApi(req, res);
 });
 
 app.use((_, res) => {

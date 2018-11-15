@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import handleLogin from "./handlers/handleLogin";
 import handleLogout from "./handlers/handleLogout";
+import handleMiddlemanApiCall from "./handlers/handleMiddlemanApiCall";
 import { MAIN_SERVER_PORT } from "../config";
 import handleGetAccessTokenAndLogin from "./handlers/handleGetAccessTokenAndLogin";
 
@@ -43,7 +44,11 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Home page");
+  res.render("index");
+});
+
+app.get("/middlemanApiCall", (req, res) => {
+  handleMiddlemanApiCall(req, res);
 });
 
 app.use((_, res) => {
