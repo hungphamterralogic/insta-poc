@@ -1,4 +1,6 @@
 import axios from "axios";
+import to from "await-to-js";
+import lodashGet from "lodash.get";
 import queryString from "query-string";
 import {
   FACEBOOK_CLIENT_ID,
@@ -27,19 +29,18 @@ module.exports = async (req, res) => {
     queries
   )}`;
 
-  const response = await axios.get(exchangeAccessTokenUrl);
+  const [err, response] = await to(axios.get(exchangeAccessTokenUrl));
 
-  if (response.data && response.data.access_token) {
+  if (lodashGet(response, "data.access_token")) {
     res.json({
       stat: "OK",
-      accessToken: response.data.access_token
+      accessToken: lodashGet(response, "data.access_token")
     });
   } else {
     const message =
-      response.data.error && response.data.error.message
-        ? response.error.message
-        : "Something bad happened.";
-
+      lodashGet(err, "message") ||
+      lodashGet(response, "data.error.message") ||
+      "Something bad happened.";
     res.json({ message });
   }
 };

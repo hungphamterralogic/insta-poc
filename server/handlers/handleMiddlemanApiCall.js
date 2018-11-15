@@ -1,5 +1,6 @@
-import fetchFromApiMiddleman from "../services/utils/fetchFromApiMiddleman";
 import to from "await-to-js";
+import lodashGet from "lodash.get";
+import fetchFromApiMiddleman from "../services/utils/fetchFromApiMiddleman";
 
 module.exports = async (req, res) => {
   const { relativeApiUrl } = req.query;
@@ -12,11 +13,11 @@ module.exports = async (req, res) => {
   let message;
 
   if (err) {
-    message = err.message ? err.message : "Something bad happened.";
+    message = err.message;
   } else if (!response) {
     message = "Something bad happened.";
   } else if (response.stat !== "OK") {
-    message = response.message ? response.message : "Something bad happened.";
+    message = lodashGet(response, "message") || "Something bad happened.";
   }
 
   if (message) {
