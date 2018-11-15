@@ -11,7 +11,7 @@ const port = MIDDLEMAN_PORT;
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, "views"));
 
-app.get("/getAuthRequestUrl", (req, res) => {
+app.get("/auth/getAuthRequestUrl", (req, res) => {
   handleGetAuthRequestUrl(req, res);
 });
 
@@ -19,11 +19,9 @@ app.get("/auth/facebook-callback", (req, res) => {
   res.render("facebook-callback", {
     mainServerUrl: MAIN_SERVER_URL
   });
-  // const code = req.query.code;
-  // res.send(code);
 });
 
-app.get("/exchangeAccessToken", (req, res) => {
+app.get("/auth/exchangeAccessToken", (req, res) => {
   handleExchangeAccessToken(req, res);
 });
 
