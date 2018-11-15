@@ -1,5 +1,5 @@
 import to from "await-to-js";
-import getAuthRequestUrl from "./services/fbAuth/getAuthRequestUrl";
+import getAuthRequestUrl from "../services/fbAuth/getAuthRequestUrl";
 
 module.exports = async (req, res) => {
   if (req.session.user) {

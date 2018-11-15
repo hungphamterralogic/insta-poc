@@ -1,7 +1,7 @@
 import path from "path";
 import express from "express";
-import handleGetAuthRequestUrl from "./services/handleGetAuthRequestUrl";
-import handleExchangeAccessToken from "./services/handleExchangeAccessToken";
+import handleGetAuthRequestUrl from "./handlers/handleGetAuthRequestUrl";
+import handleExchangeAccessToken from "./handlers/handleExchangeAccessToken";
 import { MIDDLEMAN_SERVER_PORT, MAIN_SERVER_URL } from "./config";
 
 const app = express();

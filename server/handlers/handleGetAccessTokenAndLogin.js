@@ -1,5 +1,5 @@
 import to from "await-to-js";
-import exchangeAccessToken from "./services/fbAuth/exchangeAccessToken";
+import exchangeAccessToken from "../services/fbAuth/exchangeAccessToken";
 
 module.exports = async (req, res) => {
   const { code } = req.query;
