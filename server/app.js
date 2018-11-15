@@ -4,6 +4,7 @@ import session from "express-session";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import handleLogin from "./handleLogin";
+import handleLogout from "./handleLogout";
 import { MAIN_SERVER_PORT } from "../config";
 import getAccessTokenAndLogin from "./getAccessTokenAndLogin";
 
@@ -25,13 +26,11 @@ app.use(
 );
 
 app.get("/login", (req, res) => {
-  if (req.session.user) res.redirect("/");
-  else handleLogin(req, res);
+  handleLogin(req, res);
 });
 
 app.get("/logout", (req, res) => {
-  req.session.user = null;
-  res.redirect("/login");
+  handleLogout(req, res);
 });
 
 app.get("/getAccessTokenAndLogin", (req, res) => {
