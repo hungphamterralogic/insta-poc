@@ -1,5 +1,5 @@
 import to from "await-to-js";
-import exchangeAccessToken from "./services/instaAuth/exchangeAccessToken";
+import exchangeAccessToken from "./services/fbAuth/exchangeAccessToken";
 
 module.exports = async (req, res) => {
   const { code } = req.query;
@@ -11,9 +11,7 @@ module.exports = async (req, res) => {
     });
   } else {
     const { accessToken } = response;
-    req.session.user = {
-      accessToken
-    };
+    req.session.user = { accessToken };
     res.redirect("/");
   }
 };
