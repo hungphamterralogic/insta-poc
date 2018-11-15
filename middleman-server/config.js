@@ -1,10 +1,12 @@
 import {
   MIDDLEMAN_SERVER_PORT as middleManServerPort,
+  FACEBOOK_CLIENT_ID as fbClientId,
+  FACEBOOK_CLIENT_SECRET as fbClientSecret,
   MAIN_SERVER_PORT
 } from "../config";
 
-export const FACEBOOK_CLIENT_ID = "284639592188546";
-export const FACEBOOK_CLIENT_SECRET = "5e92d15b9a3d1af059ad2b50dc600a86";
+export const FACEBOOK_CLIENT_ID = fbClientId;
+export const FACEBOOK_CLIENT_SECRET = fbClientSecret;
 
 export const MIDDLEMAN_SERVER_PORT = middleManServerPort;
 export const MIDDLEMAN_SERVER_URL = `http://localhost:${MIDDLEMAN_SERVER_PORT}`;
