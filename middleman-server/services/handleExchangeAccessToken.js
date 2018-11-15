@@ -3,7 +3,7 @@ import queryString from "query-string";
 import {
   FACEBOOK_CLIENT_ID,
   FACEBOOK_CLIENT_SECRET,
-  MIDDLEMAN_URL,
+  MIDDLEMAN_SERVER_URL,
   EXCHANGE_ACCESS_TOKEN_URL
 } from "../config";
 
@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const redirectUri = `${MIDDLEMAN_URL}/auth/facebook-callback`;
+  const redirectUri = `${MIDDLEMAN_SERVER_URL}/auth/facebook-callback`;
 
   const queries = {
     client_id: FACEBOOK_CLIENT_ID,

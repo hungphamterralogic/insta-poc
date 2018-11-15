@@ -1,4 +1,7 @@
-import { INSTA_API_MIDDLEMAN_SERVER_PORT, MAIN_SERVER_PORT } from "../config";
+import {
+  MIDDLEMAN_SERVER_PORT as middleManServerPort,
+  MAIN_SERVER_PORT
+} from "../config";
 
 export const FACEBOOK_CLIENT_ID = "284639592188546";
 export const FACEBOOK_CLIENT_SECRET = "5e92d15b9a3d1af059ad2b50dc600a86";
@@ -6,8 +9,8 @@ export const FACEBOOK_CLIENT_SECRET = "5e92d15b9a3d1af059ad2b50dc600a86";
 export const TEST_ACCESS_TOKEN =
   "EAAEC4NHICoIBAG79DP76ZCZAJOYBYuufHdztn7mI1dNmYeI8bjF4IC866Ke464oydbbVSRFhUZBzvD3FQHTVYddFADsM3o0PdlNRsrXNdFoxhrX7SPcZAWYUDZAWZAdNWIacnYcLAFYrytirVRmRbAKJUXXhLTrMTbdKNjHjjkFAZDZD";
 
-export const MIDDLEMAN_PORT = INSTA_API_MIDDLEMAN_SERVER_PORT;
-export const MIDDLEMAN_URL = `http://localhost:${MIDDLEMAN_PORT}`;
+export const MIDDLEMAN_SERVER_PORT = middleManServerPort;
+export const MIDDLEMAN_SERVER_URL = `http://localhost:${MIDDLEMAN_SERVER_PORT}`;
 
 export const MAIN_SERVER_URL = `http://localhost:${MAIN_SERVER_PORT}`;
 

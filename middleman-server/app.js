@@ -3,10 +3,10 @@ import express from "express";
 import handleGetAuthRequestUrl from "./services/handleGetAuthRequestUrl";
 import handleExchangeAccessToken from "./services/handleExchangeAccessToken";
 import getTestInfoWithAccessToken from "./services/getTestInfoWithAccessToken";
-import { MIDDLEMAN_PORT, MAIN_SERVER_URL } from "./config";
+import { MIDDLEMAN_SERVER_PORT, MAIN_SERVER_URL } from "./config";
 
 const app = express();
-const port = MIDDLEMAN_PORT;
+const port = MIDDLEMAN_SERVER_PORT;
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, "views"));
@@ -34,5 +34,5 @@ app.use((_, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Instagram API middleman server is running on port ${port}`);
+  console.log(`Middleman server is running on port ${port}`);
 });

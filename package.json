@@ -5,7 +5,7 @@
   "author": "Hung Pham <hung.pham@terralogic.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "start:middleman-server": "nodemon insta-api-middleman-server/app.js --watch insta-api-middleman-server --exec babel-node --presets=@babel/preset-env",
+    "start:middleman-server": "nodemon middleman-server/app.js --watch middleman-server --exec babel-node --presets=@babel/preset-env",
     "start:main-server": "nodemon server/app.js --watch server --exec babel-node --presets=@babel/preset-env",
     "start": "concurrently \"npm run start:middleman-server\" \"npm run start:main-server\""
   },

@@ -1,10 +1,10 @@
 import axios from "axios";
 import to from "await-to-js";
 import queryString from "query-string";
-import { INSTA_API_MIDDLEMAN_SERVER_PORT } from "../../../config";
+import { MIDDLEMAN_SERVER_PORT } from "../../../config";
 
 module.exports = async (relativeUrl, queries) => {
-  const middlemanUrl = `http://localhost:${INSTA_API_MIDDLEMAN_SERVER_PORT}`;
+  const middlemanUrl = `http://localhost:${MIDDLEMAN_SERVER_PORT}`;
 
   const requestUrl = `${middlemanUrl}${relativeUrl}?${queryString.stringify(
     queries
